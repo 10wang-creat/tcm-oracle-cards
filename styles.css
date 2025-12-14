@@ -1,5 +1,5 @@
 /* ==========================================
-   中藥心靈療癒卡 - 樣式表
+   中藥心靈療癒卡 - 樣式表 v2
    ========================================== */
 
 :root {
@@ -19,11 +19,11 @@
     --muted-text: #a8a8b8;
     
     /* 類別色彩 */
-    --color-astringent: #3a4a6a;  /* 收斂類 - 深藍 */
-    --color-warming: #8b4513;     /* 溫熱類 - 暖棕 */
-    --color-cooling: #2d6a6a;     /* 寒涼類 - 青綠 */
-    --color-tonifying: #6b4423;   /* 補益類 - 大地色 */
-    --color-dispersing: #3a6b6b;  /* 疏散類 - 薄荷綠 */
+    --color-astringent: #3a4a6a;
+    --color-warming: #8b4513;
+    --color-cooling: #2d6a6a;
+    --color-tonifying: #6b4423;
+    --color-dispersing: #3a6b6b;
     
     /* 字體 */
     --font-display: 'Ma Shan Zheng', cursive;
@@ -44,14 +44,15 @@
     box-sizing: border-box;
 }
 
-html {
-    height: 100%;
+html, body {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
-    min-height: 100%;
     font-family: var(--font-body);
     background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-mid) 50%, var(--primary-dark) 100%);
+    background-attachment: fixed;
     color: var(--soft-white);
     line-height: 1.6;
 }
@@ -95,13 +96,14 @@ body {
     }
 }
 
-/* 主容器 */
+/* 主容器 - 修正置中 */
 .app-container {
     position: relative;
     width: 100%;
     min-height: 100vh;
     max-width: 500px;
     margin: 0 auto;
+    z-index: 1;
 }
 
 /* 畫面基礎 */
@@ -114,12 +116,12 @@ body {
     padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
+    align-items: center;
     opacity: 0;
     visibility: hidden;
     transform: translateX(100%);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
-    z-index: 1;
 }
 
 .screen.active {
@@ -134,6 +136,7 @@ body {
 
 /* 畫面標頭 */
 .screen-header {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
@@ -168,22 +171,22 @@ body {
 }
 
 /* ==========================================
-   首頁樣式
+   首頁樣式 - 修正置中
    ========================================== */
 
 #home-screen {
-    height: 100vh;
-    overflow: hidden;
+    justify-content: center;
+    align-items: center;
 }
 
 .home-content {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: var(--spacing-lg);
+    width: 100%;
 }
 
 .logo-area {
@@ -221,7 +224,7 @@ body {
 
 .main-title {
     font-family: var(--font-display);
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     color: var(--gold);
     margin-bottom: var(--spacing-sm);
     text-shadow: 0 0 30px var(--gold-glow);
@@ -229,7 +232,7 @@ body {
 }
 
 .subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--muted-text);
     margin-bottom: var(--spacing-xl);
     letter-spacing: 0.2em;
@@ -284,8 +287,7 @@ body {
    ========================================== */
 
 #intention-screen {
-    height: 100vh;
-    overflow: hidden;
+    justify-content: flex-start;
 }
 
 .instruction {
@@ -293,17 +295,15 @@ body {
     color: var(--muted-text);
     margin-bottom: var(--spacing-lg);
     font-size: 1rem;
+    width: 100%;
 }
 
 .intention-cards {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
-    flex: 1;
-    justify-content: center;
-    max-width: 400px;
-    margin: 0 auto;
     width: 100%;
+    max-width: 400px;
 }
 
 .intention-card {
@@ -348,8 +348,7 @@ body {
    ========================================== */
 
 #draw-screen {
-    height: 100vh;
-    overflow: hidden;
+    justify-content: flex-start;
 }
 
 .draw-area {
@@ -358,6 +357,7 @@ body {
     align-items: center;
     justify-content: center;
     perspective: 1500px;
+    width: 100%;
 }
 
 .draw-card {
@@ -427,15 +427,15 @@ body {
 }
 
 /* ==========================================
-   結果畫面 - 修正版
+   結果畫面 - 完整修正
    ========================================== */
 
 #result-screen {
     position: relative;
     min-height: 100vh;
     height: auto;
-    overflow-y: auto;
-    padding-bottom: 120px; /* 給按鈕留空間 */
+    padding-bottom: 120px;
+    justify-content: flex-start;
 }
 
 .result-content {
@@ -443,19 +443,20 @@ body {
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-md);
+    width: 100%;
 }
 
+/* 圖卡完整顯示 */
 .result-card-display {
     width: 100%;
     max-width: 280px;
-    flex-shrink: 0;
     margin-bottom: var(--spacing-sm);
 }
 
 .result-card-img {
     width: 100%;
     height: auto;
-    object-fit: contain;
+    display: block;
     border-radius: 12px;
     box-shadow: 
         0 15px 40px rgba(0, 0, 0, 0.4),
@@ -562,7 +563,7 @@ body {
     margin-bottom: var(--spacing-sm);
 }
 
-/* 動作按鈕 - 修正版 */
+/* 動作按鈕 */
 .action-buttons {
     position: fixed;
     bottom: 0;
@@ -573,7 +574,7 @@ body {
     display: flex;
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
-    background: linear-gradient(to top, var(--primary-dark) 60%, rgba(10, 10, 26, 0.95) 80%, transparent 100%);
+    background: linear-gradient(to top, var(--primary-dark) 70%, rgba(10, 10, 26, 0.9) 90%, transparent 100%);
     z-index: 100;
 }
 
@@ -600,7 +601,7 @@ body {
 }
 
 .action-btn.secondary {
-    background: rgba(26, 26, 58, 0.9);
+    background: rgba(26, 26, 58, 0.95);
     border: 1px solid var(--gold);
     color: var(--gold-light);
 }
@@ -614,6 +615,10 @@ body {
    ========================================== */
 
 @media (max-width: 400px) {
+    .main-title {
+        font-size: 2rem;
+    }
+    
     .result-card-display {
         max-width: 240px;
     }
@@ -664,6 +669,7 @@ body {
     }
 }
 
+/* 動畫 */
 .fade-in {
     animation: fadeIn 0.5s ease forwards;
 }
