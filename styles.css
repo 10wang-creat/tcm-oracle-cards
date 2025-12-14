@@ -44,12 +44,12 @@
     box-sizing: border-box;
 }
 
-html, body {
+html {
     height: 100%;
-    overflow: hidden;
 }
 
 body {
+    min-height: 100%;
     font-family: var(--font-body);
     background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-mid) 50%, var(--primary-dark) 100%);
     color: var(--soft-white);
@@ -99,10 +99,9 @@ body {
 .app-container {
     position: relative;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     max-width: 500px;
     margin: 0 auto;
-    overflow: hidden;
 }
 
 /* 畫面基礎 */
@@ -111,7 +110,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
@@ -171,6 +170,11 @@ body {
 /* ==========================================
    首頁樣式
    ========================================== */
+
+#home-screen {
+    height: 100vh;
+    overflow: hidden;
+}
 
 .home-content {
     flex: 1;
@@ -279,6 +283,11 @@ body {
    意圖選擇畫面
    ========================================== */
 
+#intention-screen {
+    height: 100vh;
+    overflow: hidden;
+}
+
 .instruction {
     text-align: center;
     color: var(--muted-text);
@@ -337,6 +346,11 @@ body {
 /* ==========================================
    抽牌畫面
    ========================================== */
+
+#draw-screen {
+    height: 100vh;
+    overflow: hidden;
+}
 
 .draw-area {
     flex: 1;
@@ -413,24 +427,29 @@ body {
 }
 
 /* ==========================================
-   結果畫面
+   結果畫面 - 修正版
    ========================================== */
 
 #result-screen {
-    padding-bottom: 100px;
+    position: relative;
+    min-height: 100vh;
+    height: auto;
+    overflow-y: auto;
+    padding-bottom: 120px; /* 給按鈕留空間 */
 }
 
 .result-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
 }
 
 .result-card-display {
-    width: 200px;
-    height: 280px;
+    width: 180px;
+    height: 252px;
     flex-shrink: 0;
+    margin-bottom: var(--spacing-sm);
 }
 
 .result-card-img {
@@ -456,21 +475,21 @@ body {
     border-radius: 20px;
     font-size: 0.85rem;
     color: var(--gold-light);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
 }
 
 .herb-name {
     font-family: var(--font-display);
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--gold);
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
     text-shadow: 0 0 20px var(--gold-glow);
 }
 
 .herb-latin {
     font-style: italic;
     color: var(--muted-text);
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin-bottom: var(--spacing-md);
 }
 
@@ -510,15 +529,15 @@ body {
 
 .healing-message p {
     font-family: var(--font-display);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--gold-light);
     line-height: 1.8;
 }
 
 /* 解讀整合區塊 */
 .integration-section {
-    margin-top: var(--spacing-xl);
-    padding: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
     background: linear-gradient(135deg, rgba(62, 62, 110, 0.5) 0%, rgba(42, 42, 78, 0.7) 100%);
     border-radius: 20px;
     border: 1px solid rgba(212, 175, 55, 0.2);
@@ -526,15 +545,15 @@ body {
 
 .integration-section h3 {
     font-family: var(--font-display);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--gold);
     text-align: center;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     letter-spacing: 0.2em;
 }
 
 .integration-content {
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.8;
     color: var(--soft-white);
 }
@@ -543,7 +562,7 @@ body {
     margin-bottom: var(--spacing-sm);
 }
 
-/* 動作按鈕 */
+/* 動作按鈕 - 修正版 */
 .action-buttons {
     position: fixed;
     bottom: 0;
@@ -554,8 +573,8 @@ body {
     display: flex;
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
-    background: linear-gradient(to top, var(--primary-dark) 0%, transparent 100%);
-    z-index: 10;
+    background: linear-gradient(to top, var(--primary-dark) 60%, rgba(10, 10, 26, 0.95) 80%, transparent 100%);
+    z-index: 100;
 }
 
 .action-btn {
@@ -581,7 +600,7 @@ body {
 }
 
 .action-btn.secondary {
-    background: transparent;
+    background: rgba(26, 26, 58, 0.9);
     border: 1px solid var(--gold);
     color: var(--gold-light);
 }
@@ -594,19 +613,38 @@ body {
    響應式設計
    ========================================== */
 
+@media (max-width: 400px) {
+    .result-card-display {
+        width: 160px;
+        height: 224px;
+    }
+    
+    .herb-name {
+        font-size: 1.8rem;
+    }
+    
+    .healing-message p {
+        font-size: 1.1rem;
+    }
+}
+
 @media (min-width: 768px) {
     .result-content {
         flex-direction: row;
         align-items: flex-start;
+        gap: var(--spacing-lg);
     }
     
     .result-card-display {
-        width: 240px;
-        height: 336px;
+        width: 220px;
+        height: 308px;
+        position: sticky;
+        top: 80px;
     }
     
     .result-info {
         text-align: left;
+        flex: 1;
     }
     
     .herb-category {
@@ -617,7 +655,10 @@ body {
 @supports (padding: max(0px)) {
     .screen {
         padding-top: max(var(--spacing-md), env(safe-area-inset-top));
-        padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+    }
+    
+    #result-screen {
+        padding-bottom: max(120px, calc(env(safe-area-inset-bottom) + 100px));
     }
     
     .action-buttons {
