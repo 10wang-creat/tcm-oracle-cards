@@ -1,0 +1,644 @@
+/* ==========================================
+   中藥心靈療癒卡 - 樣式表
+   ========================================== */
+
+:root {
+    /* 主色調 - 深邃神秘的藍紫色系 */
+    --primary-dark: #0a0a1a;
+    --primary-mid: #1a1a3a;
+    --primary-light: #2a2a5a;
+    
+    /* 金色點綴 */
+    --gold: #d4af37;
+    --gold-light: #f0d78c;
+    --gold-glow: rgba(212, 175, 55, 0.4);
+    
+    /* 柔和輔色 */
+    --soft-white: #f5f0e8;
+    --soft-cream: #faf6f0;
+    --muted-text: #a8a8b8;
+    
+    /* 類別色彩 */
+    --color-astringent: #3a4a6a;  /* 收斂類 - 深藍 */
+    --color-warming: #8b4513;     /* 溫熱類 - 暖棕 */
+    --color-cooling: #2d6a6a;     /* 寒涼類 - 青綠 */
+    --color-tonifying: #6b4423;   /* 補益類 - 大地色 */
+    --color-dispersing: #3a6b6b;  /* 疏散類 - 薄荷綠 */
+    
+    /* 字體 */
+    --font-display: 'Ma Shan Zheng', cursive;
+    --font-body: 'Noto Serif TC', serif;
+    
+    /* 間距 */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+}
+
+/* 重置與基礎 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-mid) 50%, var(--primary-dark) 100%);
+    color: var(--soft-white);
+    line-height: 1.6;
+}
+
+/* 粒子背景 */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float-particle 8s infinite ease-in-out;
+}
+
+@keyframes float-particle {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(100vh) scale(0);
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-10vh) scale(1);
+    }
+}
+
+/* 主容器 */
+.app-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* 畫面基礎 */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.screen.exit {
+    transform: translateX(-100%);
+}
+
+/* 畫面標頭 */
+.screen-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    padding-top: env(safe-area-inset-top);
+}
+
+.back-btn {
+    background: transparent;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--gold-light);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold);
+}
+
+.screen-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    flex: 1;
+    text-align: center;
+    margin-right: 60px;
+}
+
+/* ==========================================
+   首頁樣式
+   ========================================== */
+
+.home-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.logo-area {
+    margin-bottom: var(--spacing-lg);
+}
+
+.card-back-display {
+    width: 180px;
+    height: 252px;
+    perspective: 1000px;
+}
+
+.card-back-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 40px var(--gold-glow);
+}
+
+.floating {
+    animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+}
+
+.main-title {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    color: var(--gold);
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 0 0 30px var(--gold-glow);
+    letter-spacing: 0.1em;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--muted-text);
+    margin-bottom: var(--spacing-xl);
+    letter-spacing: 0.2em;
+}
+
+/* 開始按鈕 */
+.start-btn {
+    position: relative;
+    background: linear-gradient(135deg, var(--gold) 0%, #c9a227 100%);
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 40px var(--gold-glow);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    letter-spacing: 0.1em;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
+
+.start-btn:hover .btn-glow {
+    width: 300px;
+    height: 300px;
+}
+
+/* ==========================================
+   意圖選擇畫面
+   ========================================== */
+
+.instruction {
+    text-align: center;
+    color: var(--muted-text);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1rem;
+}
+
+.intention-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    flex: 1;
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.intention-card {
+    background: linear-gradient(135deg, rgba(42, 42, 90, 0.6) 0%, rgba(26, 26, 58, 0.8) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 16px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.intention-card:hover {
+    transform: translateX(10px);
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(62, 62, 110, 0.7) 0%, rgba(42, 42, 78, 0.9) 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--gold-glow);
+}
+
+.intention-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.intention-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--gold-light);
+    margin-bottom: 0.3rem;
+}
+
+.intention-card p {
+    font-size: 0.9rem;
+    color: var(--muted-text);
+    line-height: 1.5;
+}
+
+/* ==========================================
+   抽牌畫面
+   ========================================== */
+
+.draw-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1500px;
+}
+
+.draw-card {
+    width: 220px;
+    height: 308px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.draw-card:hover:not(.flipped) {
+    transform: scale(1.05);
+}
+
+.draw-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.card-front {
+    background: var(--primary-mid);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background: var(--soft-cream);
+}
+
+.draw-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.draw-hint {
+    text-align: center;
+    color: var(--gold-light);
+    font-size: 1rem;
+    margin-top: var(--spacing-lg);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+.draw-hint.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* ==========================================
+   結果畫面
+   ========================================== */
+
+#result-screen {
+    padding-bottom: 100px;
+}
+
+.result-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.result-card-display {
+    width: 200px;
+    height: 280px;
+    flex-shrink: 0;
+}
+
+.result-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.4),
+        0 0 30px var(--gold-glow);
+}
+
+.result-info {
+    width: 100%;
+    text-align: center;
+}
+
+.herb-category {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(212, 175, 55, 0.2);
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+.herb-name {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+    text-shadow: 0 0 20px var(--gold-glow);
+}
+
+.herb-latin {
+    font-style: italic;
+    color: var(--muted-text);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.info-section {
+    background: rgba(42, 42, 90, 0.4);
+    border-radius: 12px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    text-align: left;
+}
+
+.info-section h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--gold-light);
+    margin-bottom: 0.3rem;
+}
+
+.info-section p {
+    font-size: 0.95rem;
+    color: var(--soft-white);
+}
+
+.healing-message {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 16px;
+    padding: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    text-align: center;
+}
+
+.message-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.healing-message p {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    line-height: 1.8;
+}
+
+/* 解讀整合區塊 */
+.integration-section {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, rgba(62, 62, 110, 0.5) 0%, rgba(42, 42, 78, 0.7) 100%);
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.integration-section h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    letter-spacing: 0.2em;
+}
+
+.integration-content {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--soft-white);
+}
+
+.integration-content p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* 動作按鈕 */
+.action-buttons {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: linear-gradient(to top, var(--primary-dark) 0%, transparent 100%);
+    z-index: 10;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 1rem;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.action-btn.primary {
+    background: linear-gradient(135deg, var(--gold) 0%, #c9a227 100%);
+    color: var(--primary-dark);
+}
+
+.action-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px var(--gold-glow);
+}
+
+.action-btn.secondary {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+}
+
+.action-btn.secondary:hover {
+    background: rgba(212, 175, 55, 0.1);
+}
+
+/* ==========================================
+   響應式設計
+   ========================================== */
+
+@media (min-width: 768px) {
+    .result-content {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .result-card-display {
+        width: 240px;
+        height: 336px;
+    }
+    
+    .result-info {
+        text-align: left;
+    }
+    
+    .herb-category {
+        margin-left: 0;
+    }
+}
+
+@supports (padding: max(0px)) {
+    .screen {
+        padding-top: max(var(--spacing-md), env(safe-area-inset-top));
+        padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+    }
+    
+    .action-buttons {
+        padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.draw-card.flipping {
+    animation: cardGlow 0.8s ease;
+}
+
+@keyframes cardGlow {
+    0%, 100% { filter: drop-shadow(0 0 20px transparent); }
+    50% { filter: drop-shadow(0 0 40px var(--gold)); }
+}

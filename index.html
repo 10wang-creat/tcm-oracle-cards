@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中藥心靈療癒卡 | TCM Oracle Cards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 粒子背景 -->
+        <div class="particles" id="particles"></div>
+        
+        <!-- 首頁 -->
+        <section class="screen active" id="home-screen">
+            <div class="home-content">
+                <div class="logo-area">
+                    <div class="card-back-display" id="main-card-back">
+                        <img src="images/牌背.png" alt="牌背" class="card-back-img floating">
+                    </div>
+                </div>
+                <h1 class="main-title">中藥心靈療癒卡</h1>
+                <p class="subtitle">探索古老智慧，療癒現代心靈</p>
+                <button class="start-btn" id="start-btn">
+                    <span class="btn-text">開始抽牌</span>
+                    <span class="btn-glow"></span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 選擇意圖 -->
+        <section class="screen" id="intention-screen">
+            <div class="screen-header">
+                <button class="back-btn" data-target="home-screen">← 返回</button>
+                <h2 class="screen-title">選擇你的意圖</h2>
+            </div>
+            <p class="instruction">靜下心來，選擇此刻最需要的療癒方向</p>
+            <div class="intention-cards">
+                <div class="intention-card" data-intention="emotional">
+                    <div class="intention-icon">🌊</div>
+                    <h3>情緒釋放</h3>
+                    <p>釋放壓抑的情感<br>找回內在平靜</p>
+                </div>
+                <div class="intention-card" data-intention="physical">
+                    <div class="intention-icon">🌿</div>
+                    <h3>身體療癒</h3>
+                    <p>調和身心能量<br>恢復生命活力</p>
+                </div>
+                <div class="intention-card" data-intention="spiritual">
+                    <div class="intention-icon">✨</div>
+                    <h3>靈性成長</h3>
+                    <p>探索內在智慧<br>提升靈性覺察</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 抽牌畫面 -->
+        <section class="screen" id="draw-screen">
+            <div class="screen-header">
+                <button class="back-btn" data-target="intention-screen">← 返回</button>
+                <h2 class="screen-title">抽取你的療癒卡</h2>
+            </div>
+            <p class="instruction">深呼吸，當你準備好時，點擊牌卡</p>
+            <div class="draw-area">
+                <div class="draw-card" id="draw-card">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="images/牌背.png" alt="牌背" class="draw-card-img">
+                        </div>
+                        <div class="card-back" id="result-card-front">
+                            <!-- 抽到的牌會顯示在這裡 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="draw-hint" id="draw-hint">點擊牌卡翻開</p>
+        </section>
+
+        <!-- 結果畫面 -->
+        <section class="screen" id="result-screen">
+            <div class="screen-header">
+                <button class="back-btn" data-target="home-screen">← 首頁</button>
+                <h2 class="screen-title">療癒指引</h2>
+            </div>
+            <div class="result-content">
+                <div class="result-card-display">
+                    <img src="" alt="" id="result-card-img" class="result-card-img">
+                </div>
+                <div class="result-info">
+                    <div class="herb-category" id="herb-category"></div>
+                    <h2 class="herb-name" id="herb-name"></h2>
+                    <p class="herb-latin" id="herb-latin"></p>
+                    
+                    <div class="info-section">
+                        <h4>藥性</h4>
+                        <p id="herb-properties"></p>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h4>身體作用</h4>
+                        <p id="herb-body"></p>
+                    </div>
+                    
+                    <div class="info-section">
+                        <h4>適用情境</h4>
+                        <p id="herb-context"></p>
+                    </div>
+                    
+                    <div class="healing-message">
+                        <div class="message-icon">🌸</div>
+                        <p id="herb-affirmation"></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="integration-section" id="integration-section">
+                <h3>✦ 解讀整合 ✦</h3>
+                <div class="integration-content" id="integration-content"></div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="action-btn secondary" id="draw-again-btn">再抽一張</button>
+                <button class="action-btn primary" id="finish-btn">結束</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="cards-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
