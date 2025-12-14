@@ -1,35 +1,19 @@
 /* ==========================================
-   中藥心靈療癒卡 - 樣式表 v2
+   中藥心靈療癒卡 - 樣式表 v3
    ========================================== */
 
 :root {
-    /* 主色調 - 深邃神秘的藍紫色系 */
     --primary-dark: #0a0a1a;
     --primary-mid: #1a1a3a;
     --primary-light: #2a2a5a;
-    
-    /* 金色點綴 */
     --gold: #d4af37;
     --gold-light: #f0d78c;
     --gold-glow: rgba(212, 175, 55, 0.4);
-    
-    /* 柔和輔色 */
     --soft-white: #f5f0e8;
     --soft-cream: #faf6f0;
     --muted-text: #a8a8b8;
-    
-    /* 類別色彩 */
-    --color-astringent: #3a4a6a;
-    --color-warming: #8b4513;
-    --color-cooling: #2d6a6a;
-    --color-tonifying: #6b4423;
-    --color-dispersing: #3a6b6b;
-    
-    /* 字體 */
     --font-display: 'Ma Shan Zheng', cursive;
     --font-body: 'Noto Serif TC', serif;
-    
-    /* 間距 */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
@@ -37,7 +21,6 @@
     --spacing-xl: 3rem;
 }
 
-/* 重置與基礎 */
 * {
     margin: 0;
     padding: 0;
@@ -84,10 +67,7 @@ body {
         opacity: 0;
         transform: translateY(100vh) scale(0);
     }
-    10% {
-        opacity: 0.8;
-    }
-    90% {
+    10%, 90% {
         opacity: 0.8;
     }
     100% {
@@ -96,7 +76,7 @@ body {
     }
 }
 
-/* 主容器 - 修正置中 */
+/* 主容器 */
 .app-container {
     position: relative;
     width: 100%;
@@ -116,7 +96,6 @@ body {
     padding: var(--spacing-md);
     display: flex;
     flex-direction: column;
-    align-items: center;
     opacity: 0;
     visibility: hidden;
     transform: translateX(100%);
@@ -154,6 +133,7 @@ body {
     font-size: 0.9rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 .back-btn:hover {
@@ -167,15 +147,15 @@ body {
     color: var(--gold-light);
     flex: 1;
     text-align: center;
+    padding-right: 70px;
 }
 
 /* ==========================================
-   首頁樣式 - 修正置中
+   首頁
    ========================================== */
 
 #home-screen {
     justify-content: center;
-    align-items: center;
 }
 
 .home-content {
@@ -237,7 +217,6 @@ body {
     letter-spacing: 0.2em;
 }
 
-/* 開始按鈕 */
 .start-btn {
     position: relative;
     background: linear-gradient(135deg, var(--gold) 0%, #c9a227 100%);
@@ -282,20 +261,14 @@ body {
 }
 
 /* ==========================================
-   意圖選擇畫面
+   意圖選擇
    ========================================== */
-
-#intention-screen {
-    justify-content: center;
-    align-items: center;
-}
 
 .instruction {
     text-align: center;
     color: var(--muted-text);
     margin-bottom: var(--spacing-lg);
     font-size: 1rem;
-    width: 100%;
 }
 
 .intention-cards {
@@ -303,8 +276,6 @@ body {
     flex-direction: column;
     gap: var(--spacing-md);
     width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
 }
 
 .intention-card {
@@ -345,21 +316,16 @@ body {
 }
 
 /* ==========================================
-   抽牌畫面
+   抽牌
    ========================================== */
 
-#draw-screen {
-    justify-content: center;
-    align-items: center;
-}
-
 .draw-area {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     perspective: 1500px;
-    width: 100%;
 }
 
 .draw-card {
@@ -429,16 +395,11 @@ body {
 }
 
 /* ==========================================
-   結果畫面 - 完整修正
+   結果頁面
    ========================================== */
 
 #result-screen {
-    position: relative;
-    min-height: 100vh;
-    height: auto;
     padding-bottom: 120px;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .result-content {
@@ -447,14 +408,12 @@ body {
     align-items: center;
     gap: var(--spacing-md);
     width: 100%;
-    max-width: 400px;
 }
 
-/* 圖卡完整顯示 */
 .result-card-display {
     width: 100%;
     max-width: 280px;
-    margin-bottom: var(--spacing-sm);
+    margin: 0 auto var(--spacing-sm);
 }
 
 .result-card-img {
@@ -539,7 +498,6 @@ body {
     line-height: 1.8;
 }
 
-/* 解讀整合區塊 */
 .integration-section {
     margin-top: var(--spacing-lg);
     padding: var(--spacing-md);
@@ -571,15 +529,15 @@ body {
 .action-buttons {
     position: fixed;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    max-width: 500px;
+    left: 0;
+    right: 0;
     display: flex;
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
     background: linear-gradient(to top, var(--primary-dark) 70%, rgba(10, 10, 26, 0.9) 90%, transparent 100%);
     z-index: 100;
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .action-btn {
@@ -615,7 +573,7 @@ body {
 }
 
 /* ==========================================
-   響應式設計
+   響應式
    ========================================== */
 
 @media (max-width: 400px) {
@@ -629,10 +587,6 @@ body {
     
     .herb-name {
         font-size: 1.8rem;
-    }
-    
-    .healing-message p {
-        font-size: 1.1rem;
     }
 }
 
@@ -653,10 +607,6 @@ body {
         text-align: left;
         flex: 1;
     }
-    
-    .herb-category {
-        margin-left: 0;
-    }
 }
 
 @supports (padding: max(0px)) {
@@ -673,7 +623,6 @@ body {
     }
 }
 
-/* 動畫 */
 .fade-in {
     animation: fadeIn 0.5s ease forwards;
 }
